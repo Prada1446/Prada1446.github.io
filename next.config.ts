@@ -3,7 +3,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/(.*)", // Berlaku untuk semua halaman
+        source: "/(.*)",
         headers: [
           {
             key: "Content-Security-Policy",

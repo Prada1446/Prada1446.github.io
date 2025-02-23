@@ -50,7 +50,7 @@ const CameraPage = () => {
         }
       );
 
-      console.log("✅ Upload berhasil (response tidak bisa dibaca dalam mode no-cors)");
+      console.log("Upload berhasil");
 
       // Simpan data ke Context API
       setUserData({
