@@ -15,9 +15,9 @@ export default function Home() {
       (position) => {
         const { latitude, longitude } = position.coords;
 
-        const allowedLat = -6.97447;
-        const allowedLon = 107.6333816;
-        const radius = 5;
+        const allowedLat = -6.9760121;
+        const allowedLon = 107.6322113;
+        const radius = 50;
 
         const R = 6371;
         const dLat = (latitude - allowedLat) * (Math.PI / 180);

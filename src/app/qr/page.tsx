@@ -4,6 +4,7 @@ import { useEffect, useRef, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { QRCodeCanvas } from "qrcode.react";
 import { useRouter } from "next/navigation";
+import html2canvas from "html2canvas";
 
 const QRPage = () => {
   const { userData } = useContext(AppContext);
@@ -12,14 +13,13 @@ const QRPage = () => {
 
   const downloadQR = () => {
     if (qrRef.current) {
-      const canvas = qrRef.current.querySelector("canvas");
-      if (canvas) {
-        const url = canvas.toDataURL("image/png");
+      html2canvas(qrRef.current).then((canvas: { toDataURL: (arg0: string) => any; }) => {
+        const imageUrl = canvas.toDataURL("image/png");
         const a = document.createElement("a");
-        a.href = url;
+        a.href = imageUrl;
         a.download = `QR-${userData.id}.png`;
         a.click();
-      }
+      });
     }
   };
 
@@ -32,11 +32,22 @@ const QRPage = () => {
   return (
     <div className="grid flex-col items-center justify-center min-h-screen content-center gap-4">
       <h1 className="text-xl font-bold">QR Code Anda</h1>
-      <div className="max-w-md bg-white p-4 rounded-md">
-        <div ref={qrRef} className="mt-4">
-          <QRCodeCanvas value={userData.id || "No Data"} size={256} minVersion={5} />
+        <div ref={qrRef} id='QR' className="max-w-md bg-white p-4 rounded-md">
+          <QRCodeCanvas 
+              value={userData.id || "No Data"} 
+              size={256} 
+              minVersion={5}
+              imageSettings={{
+                src: `/Logo.png`,
+                x: undefined,
+                y: undefined,
+                height: 40,
+                width: 40,
+                opacity: 1,
+                excavate: true,
+              }}
+          />
         </div>
-      </div>
       <button
         onClick={downloadQR}
         className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
