@@ -62,6 +62,9 @@ export default function Registration() {
     );
 
     try {
+      router.push("/qr");
+      UserStorage.saveUser(newUser);
+      
       await fetch("https://script.google.com/macros/s/AKfycbxvZcHBiqxFH8m2g7ckPy9w3xCIB9p6iCZSfX3BYHhnuaKo2Qr6YCJ5yLqMw2s69yY_1w/exec", {
         method: "POST",
         headers: {
@@ -69,9 +72,8 @@ export default function Registration() {
         },
         body: JSON.stringify(newUser.toJSON()),
       });
-      console.log("User Data before submit:", user);
-      UserStorage.saveUser(newUser);
-      router.push("/qr");
+      
+      
     } catch (error) {
       console.error("❌ Upload gagal:", error);
     } finally {
