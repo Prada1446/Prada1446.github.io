@@ -10,7 +10,7 @@ const HomePage = () => {
   useEffect(() => {
     const user = UserStorage.getUser();
     if (user != null) {
-      router.replace("/qr");
+      router.replace("/donation");
     } else {
       router.replace("/form");
     }

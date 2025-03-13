@@ -62,7 +62,7 @@ export default function Registration() {
     );
 
     try {
-      router.push("/qr");
+      router.push("/donation");
       UserStorage.saveUser(newUser);
       
       await fetch("https://script.google.com/macros/s/AKfycbxvZcHBiqxFH8m2g7ckPy9w3xCIB9p6iCZSfX3BYHhnuaKo2Qr6YCJ5yLqMw2s69yY_1w/exec", {
