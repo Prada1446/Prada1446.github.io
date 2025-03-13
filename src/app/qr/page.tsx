@@ -37,6 +37,7 @@ const QRPage = () => {
   return (
     <div className="grid flex-col items-center justify-center min-h-screen content-center gap-4">
       <h1 className="text-xl font-bold">QR Code Anda</h1>
+      <p>Kamu berhasil mendaftar, silahkan tunjukkan QR berikut di meja registrasi masjid TULT mulai pukul 16.30 WIB</p>
       <div ref={qrRef} id="QR" className="max-w-md bg-white p-4 rounded-md">
         <QRCodeCanvas
           value={String(user.id)}
